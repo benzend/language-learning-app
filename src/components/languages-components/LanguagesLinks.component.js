@@ -22,13 +22,29 @@ const StyledDiv = styled.div`
   }
 `;
 
-export default function LanguagesLinks() {
+export default function LanguagesLinks({
+  setCurrentLang,
+  currentLang,
+  setCurrentIcon,
+}) {
+  const clickHandler = (lang) => {
+    if (lang === "german") {
+      setCurrentIcon(
+        "https://img.icons8.com/fluent/48/000000/germany-circular.png"
+      );
+    } else if (lang === "french") {
+      setCurrentIcon("https://image.flaticon.com/icons/png/512/496/496394.png");
+    }
+    setCurrentLang(lang);
+  };
   return (
     <StyledDiv>
-      <Link to="/french">French</Link>
-      <Link to="/german">German</Link>
-      <Link to="/spanish">Spanish</Link>
-      <Link to="/japanese">Japanese</Link>
+      <Link to="/french" onClick={() => clickHandler("french")}>
+        French
+      </Link>
+      <Link to="/german" onClick={() => clickHandler("german")}>
+        German
+      </Link>
     </StyledDiv>
   );
 }

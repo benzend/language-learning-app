@@ -6,7 +6,7 @@ import FrenchBasicsContainer from "./FrenchBasics1Container";
 import FrenchBasics2Container from "./FrenchBasics2Container";
 import FrenchBasics3Container from "./FrenchBasics3Container";
 
-const FrenchPathHandler = ({ icon }) => {
+const FrenchPathHandler = ({ icon, currentLang }) => {
   const [lessonsCompleted, setLessonsCompleted] = useState([]);
 
   const lesson1Handler = () => {
@@ -37,13 +37,17 @@ const FrenchPathHandler = ({ icon }) => {
     <>
       <Route
         exact
-        path="/french"
+        path={homeUrl}
         render={() => (
-          <FrenchMainNavigationSection icon={icon} {...lessonsCompleted} />
+          <FrenchMainNavigationSection
+            currentLang={currentLang}
+            icon={icon}
+            {...lessonsCompleted}
+          />
         )}
       />
       <Route
-        path="/french/basics"
+        path={homeUrl + "/basics"}
         render={() => (
           <FrenchBasicsContainer
             homeUrl={homeUrl}
@@ -53,7 +57,7 @@ const FrenchPathHandler = ({ icon }) => {
         )}
       />
       <Route
-        path="/french/basics2"
+        path={homeUrl + "/basics2"}
         render={() => (
           <FrenchBasics2Container
             homeUrl={homeUrl}
@@ -63,7 +67,7 @@ const FrenchPathHandler = ({ icon }) => {
         )}
       />
       <Route
-        path="/french/basics3"
+        path={homeUrl + "/basics3"}
         render={() => (
           <FrenchBasics3Container
             homeUrl={homeUrl}

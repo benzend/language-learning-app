@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { Advisor } from "../Advisor";
 
 const Header = styled.div`
   max-width: 1200px;
@@ -37,7 +38,13 @@ const StyledLink = styled.div`
   }
 `;
 
-const MainHeader = ({ icon }) => {
+const MainHeader = ({ icon, currentLang }) => {
+  const getAdvisor = (lang) => {
+    console.log("is this running");
+    if (!lang || lang === "") {
+      return <Advisor />;
+    } else return null;
+  };
   return (
     <MarginContainer>
       <Header>
@@ -67,6 +74,7 @@ const MainHeader = ({ icon }) => {
               alt="language icon"
             />
           </StyledLink>
+          {getAdvisor(currentLang)}
         </Link>
       </Header>
     </MarginContainer>

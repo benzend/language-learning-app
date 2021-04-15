@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Contact from "./components/contact-components/Contact";
 import Friends from "./components/friends-components/Friends";
@@ -9,25 +9,72 @@ import FrenchPathHandler from "./components/home-page-components/french/FrenchPa
 import GermanPathHandler from "./components/home-page-components/german/GermanPathHandler";
 
 function App() {
-  const frenchIcon = "https://image.flaticon.com/icons/png/512/496/496394.png";
-  const germanIcon =
-    "https://img.icons8.com/fluent/48/000000/germany-circular.png";
+  const [currentLang, setCurrentLang] = useState("");
+  const [currentIcon, setCurrentIcon] = useState("");
+
+  const getLangRoute = (lang) => {
+    switch (lang) {
+      case "german":
+        return (
+          <Route
+            path="/german"
+            render={() => (
+              <GermanPathHandler icon={currentIcon} currentLang={currentLang} />
+            )}
+          />
+        );
+
+      case "french":
+        return (
+          <Route
+            path="/french"
+            render={() => (
+              <FrenchPathHandler icon={currentIcon} currentLang={currentLang} />
+            )}
+          />
+        );
+      default:
+        return null;
+    }
+  };
+  const LangRoute = getLangRoute(currentLang);
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/" render={MainHeader} />
+          {!currentLang ? (
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <MainHeader icon={currentIcon} currentLang={currentLang} />
+              )}
+            />
+          ) : null}
           <Route
-            path="/french"
-            render={() => <FrenchPathHandler icon={frenchIcon} />}
+            path="/contact"
+            render={() => (
+              <Contact currentLang={currentLang} icon={currentIcon} />
+            )}
           />
           <Route
-            path="/german"
-            render={() => <GermanPathHandler icon={germanIcon} />}
+            path="/friends"
+            render={() => (
+              <Friends currentLang={currentLang} icon={currentIcon} />
+            )}
           />
-          <Route path="/contact" component={Contact} />
-          <Route path="/friends" component={Friends} />
-          <Route path="/languages" component={Languages} />
+          <Route
+            path="/languages"
+            render={() => (
+              <Languages
+                setCurrentLang={setCurrentLang}
+                setCurrentIcon={setCurrentIcon}
+                currentLang={currentLang}
+                icon={currentIcon}
+              />
+            )}
+          />
+          {LangRoute}
         </Switch>
       </Router>
     </div>

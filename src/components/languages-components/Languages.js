@@ -2,12 +2,16 @@ import React from "react";
 import MainHeader from "../headers/MainHeader";
 import LanguagesLinks from "./LanguagesLinks.component";
 
-const Languages = () => {
+const Languages = ({ currentLang, setCurrentLang, setCurrentIcon, icon }) => {
   return (
     <div>
-      <MainHeader />
+      <MainHeader icon={icon} />
       <h2> Your Languages </h2>
-      <LanguagesLinks />
+      <LanguagesLinks
+        setCurrentIcon={setCurrentIcon}
+        currentLang={currentLang}
+        setCurrentLang={setCurrentLang}
+      />
     </div>
   );
 };

@@ -13,7 +13,7 @@ const FlexContainer = styled.div`
 const FrenchMainNavigationSection = (props) => {
   return (
     <div>
-      <MainHeader icon={props.icon} />
+      <MainHeader icon={props.icon} currentLang={props.currentLang} />
       <h2>Your Lessons</h2>
       <FlexContainer>
         <FrenchBasics lessonsCompleted={props} />

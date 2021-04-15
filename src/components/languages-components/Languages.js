@@ -5,7 +5,7 @@ import LanguagesLinks from "./LanguagesLinks.component";
 const Languages = ({ currentLang, setCurrentLang, setCurrentIcon, icon }) => {
   return (
     <div>
-      <MainHeader icon={icon} />
+      <MainHeader icon={icon} currentLang={currentLang} />
       <h2> Your Languages </h2>
       <LanguagesLinks
         setCurrentIcon={setCurrentIcon}

@@ -40,15 +40,19 @@ const StyledLink = styled.div`
 
 const MainHeader = ({ icon, currentLang }) => {
   const getAdvisor = (lang) => {
-    console.log("is this running");
     if (!lang || lang === "") {
       return <Advisor />;
     } else return null;
   };
+  const getHomeLink = (lang) => {
+    if (!lang) return "/";
+    else if (lang === "german") return "/german";
+    else if (lang === "french") return "/french";
+  };
   return (
     <MarginContainer>
       <Header>
-        <Link to="/">
+        <Link to={getHomeLink(currentLang)}>
           <StyledLink>
             <i className="fas fa-home"></i>
           </StyledLink>
